@@ -1,12 +1,12 @@
 # Projeto de Agenda de Contatos
 
 - [Introdução](https://github.com/czagiacomo/ProjetoAgenda?tab=readme-ov-file#Introdução)
-- Execução
-  - Instalação
-  - Requisitos do Sistema
-  - Comandos e Funcionalidades
-- Colaboradores
-- Desafios e Aprendizados
+- [Execução](https://github.com/czagiacomo/ProjetoAgenda?tab=readme-ov-file#Execução)
+  - [Requisitos do Sistema](https://github.com/czagiacomo/ProjetoAgenda?tab=readme-ov-file#Requisitos-do-Sistema)
+  - [Instalação](https://github.com/czagiacomo/ProjetoAgenda?tab=readme-ov-file#Instalação)
+  - [Comandos e Funcionalidades](https://github.com/czagiacomo/ProjetoAgenda?tab=readme-ov-file#Comandos-e-Funcionalidades)
+- [Colaboradores](https://github.com/czagiacomo/ProjetoAgenda?tab=readme-ov-file#Colaboradores)
+- [Desafios e Aprendizados](https://github.com/czagiacomo/ProjetoAgenda?tab=readme-ov-file#Desafios-e-Aprendizados)
 
 ## Introdução
 Projeto de Agenda de Contatos realizado em Java.
@@ -15,7 +15,7 @@ O programa gerencia uma lista de contatos utilizando CRUD e armazenando os dados
 ## Execução
 Clone e instale o programa através das instruções a seguir. Após instalação, utilize os comandos de Menu.
 
-### Requisitos do Sistemaaaaaa
+### Requisitos do Sistema
 - Java JDK 8 ou superior.
 
 ### Instalação
