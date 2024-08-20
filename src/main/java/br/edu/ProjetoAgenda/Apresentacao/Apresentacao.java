@@ -53,7 +53,7 @@ public class Apresentacao {
 
     public static String capturarEmail() {
         System.out.println();
-        System.out.println("Informe o email do contato: ");
+        System.out.println("Informe o email do contato (exemplo@qualquer.com): ");
         return scanner.nextLine();
     }
 }

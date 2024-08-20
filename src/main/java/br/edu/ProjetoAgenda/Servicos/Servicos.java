@@ -8,8 +8,17 @@ import static src.main.java.br.edu.ProjetoAgenda.Validacoes.Validacoes.*;
 
 public class Servicos {
     static Scanner scanner = new Scanner(System.in);
-    static String[][] contatos = new String[100][7];
+    static int quantidadeRegistros = 1;
+    static String[][] contatos = new String[quantidadeRegistros][7];
     static short contador = 0;
+
+    public static boolean numeroDeRegistro() {
+        if (quantidadeRegistros == 0) {
+            System.out.printf(" Nenhum registro armazenado.%n");
+            return false;
+        }
+        return true;
+    }
 
     public static void adicionarContato() throws Exception {
         String nome = "";
@@ -24,6 +33,7 @@ public class Servicos {
             }
         }
 
+        System.out.println();
         System.out.println("Deseja cadastrar o endereço residencial? (S/N)");
         String resp = scanner.nextLine();
         String endereco = "";
@@ -46,6 +56,7 @@ public class Servicos {
 
         String telefone2 = "";
         while (true) {
+            System.out.println();
             System.out.println("Deseja cadastrar outro número de telefone? (S/N)");
             resp = scanner.nextLine();
 
@@ -76,6 +87,25 @@ public class Servicos {
             }
         }
 
+        boolean cadastrado = false;
+        while (!cadastrado) {
+            try {
+                cadastrarRegistro(nome, endereco, telefone, telefone2, email);
+                cadastrado = true;
+            } catch (ArrayIndexOutOfBoundsException err) {
+                System.out.println("Agenda atingiu o limite, Aumentando o tamanho da sua agenda...");
+                contatos = aumentarArray(contatos, quantidadeRegistros);
+                quantidadeRegistros *= 2;
+            }
+        }
+
+        System.out.printf("Contato adicionado com sucesso! ID: %s%n ",
+                contador + 1);
+        contador++;
+        listarContatos((short) 0);
+    }
+
+    private static void cadastrarRegistro(String nome, String endereco, String telefone, String telefone2, String email) {
         contatos[contador][0] = String.valueOf(contador + 1);
         contatos[contador][1] = nome;
         contatos[contador][2] = endereco;
@@ -83,12 +113,6 @@ public class Servicos {
         contatos[contador][4] = telefone2;
         contatos[contador][5] = email;
         contatos[contador][6] = "n";
-
-
-        System.out.printf("Contato adicionado com sucesso! ID: %s%n ",
-                contador + 1);
-        contador++;
-        listarContatos((short) 0);
     }
 
 //    public static short buscarPorTelefone(String telefone) {
@@ -156,6 +180,18 @@ public class Servicos {
                     (!Objects.equals(contatos[id][4], "") ? ", Telefone 2: " + contatos[id][4] : "") +
                     ", Email: " + contatos[id][5]);
             System.out.println("--------------------------------------------------------------------------");        }
+    }
+
+    public static String[][] aumentarArray(String[][] contatos, int novoTamanho) {
+        String[][] novoArray = new String[novoTamanho*2][7];
+
+        for (int i = 0; i < contatos.length; i++) {
+            for (int j = 0; j < contatos[i].length; j++) {
+                novoArray[i][j] = contatos[i][j];
+            }
+        }
+
+        return novoArray;
     }
 }
 
