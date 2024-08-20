@@ -5,6 +5,7 @@ import java.util.Scanner;
 import static src.main.java.br.edu.ProjetoAgenda.Apresentacao.Apresentacao.exibirMenu;
 import static src.main.java.br.edu.ProjetoAgenda.Servicos.Servicos.*;
 import static src.main.java.br.edu.ProjetoAgenda.Validacoes.Validacoes.validarCampoOpcao;
+import static src.main.java.br.edu.ProjetoAgenda.Validacoes.Validacoes.validarCampoTelefone;
 
 public class ProjetoAgenda {
     static Scanner scanner = new Scanner(System.in);
@@ -24,7 +25,7 @@ public class ProjetoAgenda {
         while (opt != 6);
     }
 
-    public static void direcionarOpcao(short opt) {
+    public static void direcionarOpcao(short opt) throws Exception {
         String data;
         short id;
         switch (opt) {
@@ -35,7 +36,6 @@ public class ProjetoAgenda {
 //                data = capturarTelefone();
 //                id = buscarPorTelefone(data);
 //                if (id != 0) {
-//                    cabecalhoContatos();
 //                    listarContatos(id);
 //                } else {
 //                    System.out.println("Telefone não encontrado!");
@@ -72,16 +72,10 @@ public class ProjetoAgenda {
 //            case 6:
 //                System.out.println("Saindo...");
 //                break;
+            case 8:
+                listarContatos((short) 0);
             default:
                 System.out.println("Opção inválida!");
         }
     }
-
-//    private static String capturarTelefone() {
-//        System.out.println();
-//        System.out.println("Informe o telefone do contato (11 caracteres): ");
-//        String data = scanner.next();
-//        scanner.nextLine();
-//        return data;
-//    }
 }
