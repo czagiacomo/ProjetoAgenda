@@ -1,4 +1,8 @@
-package src.main.java.br.edu.ProjetoAgenda.Validacoes;
+package src.main.java.br.edu.ProjetoAda.Validacoes;
+
+import src.main.java.br.edu.ProjetoAda.Models.Usuario;
+
+import java.util.List;
 
 public class Validacoes {
     public static short validarCampoOpcao(String opt) throws Exception {
@@ -9,19 +13,16 @@ public class Validacoes {
         }
     }
 
-    public static void validarCampoTelefone(String telefone, int contador,
-                                            String[][] contatos) throws Exception {
+    public static void validarCampoTelefone(String telefone) throws Exception {
         if (telefone.length() != 11)
             throw new Exception("Telefone inválido!");
-
-
     }
 
     public static void validarTelefoneDuplicado(String telefone,
-                                                String[][] contatos, short contador) throws Exception {
-        if (contador != 0) {
-            for (int i = 0; i < contador; i++) {
-                if (contatos[i][3].equals(telefone) || contatos[i][4].equals(telefone)) {
+                                                List<Usuario> contatos) throws Exception {
+        if (contatos != null) {
+            for (Usuario contato : contatos) {
+                if (contato.getTelefone().contains(telefone)) {
                     throw new Exception("Telefone já cadastrado!");
                 }
             }
