@@ -1,6 +1,7 @@
 package br.edu.grupo1.entity;
 
 import br.edu.grupo1.banco.Conta;
+import br.edu.grupo1.banco.ContaPoupanca;
 
 public class Usuario extends Pessoa {
     private int id;

@@ -12,6 +12,7 @@ public class Conta {
     private String numero;
     private String senha;
     private double saldo;
+    private ContaPoupanca contaPoupanca;
 
     public Conta(String senha) {
         this.agencia = gerarAgencia();
@@ -32,17 +33,12 @@ public class Conta {
         return senha;
     }
 
-    public void consultarSaldo() {
-        System.out.println("Saldo: " + saldo);
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void depositar(double valor) {
-        if (valor > 0) {
-            saldo += valor;
-            System.out.println("Depósito de R$" + valor + " realizado com sucesso.");
-        } else {
-            System.out.println("Valor de depósito inválido.");
-        }
+    public void consultarSaldo() {
+        System.out.println("Saldo: " + saldo);
     }
 
     public void depositar() {
@@ -57,18 +53,6 @@ public class Conta {
             System.out.println("Depósito de R$" + valor + " realizado com sucesso.");
         } else {
             System.out.println("Valor de depósito inválido.");
-        }
-    }
-
-    public void sacar(double valor) {
-        if (valor > 0 && valor <= saldo) {
-            saldo -= valor;
-            System.out.println("Saque de R$" + valor + " realizado com sucesso.");
-            System.out.println("Seu saldo é de: " + saldo);
-        } else if (valor > saldo) {
-            System.out.println("Saldo insuficiente para o saque.");
-        } else {
-            System.out.println("Valor de saque inválido.");
         }
     }
 
@@ -90,14 +74,33 @@ public class Conta {
         }
     }
 
-    // ??????? //
-    public void transferir(Conta destino, double valor) {
+    public void transferirParaPoupanca() {
+        this.contaPoupanca = new ContaPoupanca(this.senha);
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Qual o valor a ser transferido?");
+        double valor = scanner.nextDouble();
+
+        System.out.println("Qual o período de aplicação?");
+        int periodo = scanner.nextInt();
+
         if (valor > 0 && valor <= saldo) {
-            this.sacar(valor);
-            destino.depositar(valor);
-            System.out.println("Transferência de R$" + valor + " realizada para a conta " + destino.getNumero() + ".");
+            saldo -= valor;
+            this.contaPoupanca.aplicarNaPoupanca(valor, periodo);
+        } else if (valor > saldo) {
+            System.out.println("Saldo insuficiente para a transferência.");
         } else {
-            System.out.println("Transferência não realizada.");
+            System.out.println("Valor de transferência inválido.");
+        }
+    }
+
+    public void receberTransferencia(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+            System.out.println("Transferência de R$" + valor + " recebida com sucesso.");
+        } else {
+            System.out.println("Valor de transferência inválido.");
         }
     }
 
@@ -124,6 +127,13 @@ public class Conta {
 
         numerosDeConta.add(numeroGerado);
         return numeroGerado;
+    }
+
+    public ContaPoupanca getContaPoupanca() {
+        if(contaPoupanca == null) {
+            System.out.println("Conta poupança não encontrada.");
+        }
+        return contaPoupanca;
     }
 
 }

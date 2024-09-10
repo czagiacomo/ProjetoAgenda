@@ -67,13 +67,30 @@ public class Menu {
                         usuario.getConta().exibirInformacoes();
                         break;
                     case 2:
-                        usuario.getConta().depositar();
+                        usuario.getConta().consultarSaldo();
                         break;
                     case 3:
-                        usuario.getConta().sacar();
+                        usuario.getConta().depositar();
                         break;
                     case 4:
-                        usuario.getConta();
+                        usuario.getConta().sacar();
+                        break;
+                    case 5:
+                        usuario.getConta().transferirParaPoupanca();
+                        break;
+                    case 6:
+                        if (usuario.getConta().getContaPoupanca() == null) {
+                            System.out.println("Conta poupança não encontrada.");
+                            break;
+                        }
+                        usuario.getConta().getContaPoupanca().exibirInformacoes();
+                        break;
+                    case 7:
+                        if (usuario.getConta().getContaPoupanca() == null) {
+                            System.out.println("Conta poupança não encontrada.");
+                            break;
+                        }
+                        usuario.getConta().getContaPoupanca().transferirParaContaCorrente();
                         break;
                     case 0:
                         System.out.println("Saindo da sua conta...");
